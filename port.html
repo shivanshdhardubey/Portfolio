@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Shivansh Dubey</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient( 135deg,hsl(166, 89%, 4%), #323436, #280237, #130201);
+      background-size: 400% 400%;
+      animation: bgAnimation 15s ease infinite;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeDown 1.5s ease;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      background: linear-gradient(white);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      animation: glowText 3s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff00de; }
+      to { text-shadow: 0 0 20px #00ffe5, 0 0 40px #ff0099; }
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeIn 2s forwards 1s;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(231, 221, 221, 0.7);
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+    }
+
+    nav a {
+      color:black;
+      margin: 14px;
+      padding:25px;
+      font-size: 22px;
+      text-decoration: none;
+      font-weight:bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffdd00;
+      transform: scale(1.2);
+    }
+
+    /* Section */
+    section {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: slideUp 1.5s forwards;
+    }
+
+    section:nth-child(even) { animation-delay: 0.5s; }
+    section:nth-child(odd) { animation-delay: 1s; }
+
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 3.3rem;
+      background: linear-gradient(to right, #ffdd00, #ff0066, #00dbde);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+      p{
+   font-size:20px;
+      }
+    /* About */
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .about img {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 8px solid #fff;
+      box-shadow: 0 0 20px #ff0099;
+      animation: pulse 4s infinite;
+      transition: transform 0.5s ease;
+    }
+
+    .about img:hover {
+      transform: rotate(5deg) scale(1.08);
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px #ff0099; }
+      50% { box-shadow: 0 0 40px #00ffe5; }
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 280px;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    /* Skills */
+    .skills ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      list-style: none;
+    }
+
+    .skills li {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      transition: transform 0.4s, background 0.4s;
+    }
+    .skills li:hover {
+      transform: rotate(-3deg) scale(1.1);
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* Timeline (Education, Experience, Certifications) */
+    .timeline {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline li {
+      background: rgba(255,255,255,0.1);
+      margin: 20px 0;
+      padding: 20px;
+      border-left: 6px solid #ffdd00;
+      border-radius: 8px;
+      animation: zoomIn 1s ease forwards;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 20px #ffdd00;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.1);
+    }
+    .project-card a{
+        color: rgb(245, 240, 240);
+        font-size: medium;
+    }
+    .project-info {
+      padding: 15px;
+    }
+
+    /* Resume Button */
+    .resume-btn {
+      display: inline-block;
+      padding: 14px 22px;
+      background: linear-gradient(135deg, #ffdd00, #ff0066, #00dbde);
+      border-radius: 10px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .resume-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #fff;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 40px;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Shivansh Dhar Dubey</h1>
+    <p>✨ Software Engineer | Java Developer | Web Developer ✨</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about" class="about">
+    <img src="pic.jpg" alt="Profile Photo">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate Software Engineer specializing in Java and Web Development. 
+        With strong problem-solving skills and expertise in building scalable applications, 
+        I aim to deliver efficient, user-friendly, and robust software solutions.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Java / Spring Boot</li>
+      <li>HTML / CSS / JavaScript</li>
+      <li>Python</li>
+      <li>C</li>
+      <li>React.js</li>
+      <li>Node.js</li>
+      <li>SQL / MongoDB</li>
+      <li>REST API Development</li>
+      <li>Git / GitHub</li>
+    </ul>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <ul class="timeline">
+      <li>
+        <h3>B.Tech in Computer Science</h3>
+        <p>School Of Management Sciences Lucknow, 2023 - 2027</p>
+      </li>
+      <li>
+        <h3>Higher Secondary Education</h3>
+        <p>P N S J I College Gorakhpur, 2021 - 2023</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      <li>
+        <h3>Web Developer Intern</h3>
+        <p>Osis Infobyte | June 2024 - Sept 2024</p>
+      </li>
+      <li>
+        <h3>Freelance Web Developer</h3>
+        <p>2023 - Present</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul class="timeline">
+      <li>Oracle Certified Java Programmer (Oracle, 2023)</li>
+      <li>AWS Cloud Practitioner (AWS, 2024)</li>
+      <li>Full Stack Web Development (Coursera, 2023)</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="port.png" alt="Portfolio Website">
+        <div class="project-info">
+          <h3>Portfolio Website</h3>
+          <p>A responsive portfolio showcasing skills, projects, and experience.</p>
+           <a href="https://github.com/shivanshdhardubey/Job_Hunting_Website ">Get Repository</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="home.png" alt="E-commerce App">
+        <div class="project-info">
+          <h3>Job Hunting Website</h3>
+          <p>Front-end application using HTML CSS JS and also provide job matching algorithm.</p>
+          <a href="https://github.com/shivanshdhardubey/Job_Hunting_Website ">Get Repository</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="student.png" alt="Student Management System">
+        <div class="project-info">
+          <h3>Student Management System</h3>
+          <p>Developed in JSP CSS JS and javaservlet MySQL for managing student data.</p>
+           <a href="https://github.com/shivanshdhardubey/Job_Hunting_Website ">Get Repository</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:shivansh@example.com">shivanshdhardubey8@gmail.com</a></p>
+     <p>LinkedIn: <a href="https://www.linkedin.com/in/shivansh-dhar-dubey-a91871307?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">linkedin.com/in/shivansh</a></p>
+    <p>GitHub: <a href="https://share.google/UbP3UMDBDKhY3sXAF " target="_blank">github.com/shivansh</a></p>
+    <a class="resume-btn" href="resume.pdf" target="_blank">📄 View / Download Resume</a>
+  </section>
+
+  <footer>
+    <p>© 2025 Shivansh Dubey | Built with ❤</p>
+  </footer>
